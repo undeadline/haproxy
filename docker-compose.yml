@@ -1,6 +1,6 @@
 services:
   haproxy:
-    image: haproxy:3.2-alpine
+    image: haproxy:3.2.25-trixie
     container_name: haproxy
     restart: unless-stopped
     ports:
@@ -9,3 +9,9 @@ services:
     volumes:
       - ./config/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
       - ./certs:/certs
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
